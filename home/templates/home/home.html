@@ -9,4 +9,35 @@
 	Hello, this is the home page!
 </div>
 
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Produto</th>
+			<th scope="col">Data de Inserção na Loja</th>
+			<th scope="col">Total de Vendas</th>
+			<th scope="col">14 de Fevereiro de 2021</th>
+			<th scope="col">13 de Fevereiro de 2021</th>
+			<th scope="col">12 de Fevereiro de 2021</th>
+			<th scope="col">11 de Fevereiro de 2021</th>
+			<th scope="col">10 de Fevereiro de 2021</th>
+			<th scope="col">9 de Fevereiro de 2021</th>
+		</tr>
+	</thead>
+	{% for product in products %}
+	  <tbody>
+	  	
+  		<tr>
+	  		<th scope="row">{{ forloop.counter0 }}</th>
+	  		{% for spec in product %}
+		  		
+			    <td>{{ spec }}&nbsp;&nbsp;</td>
+			{% endfor %}
+		</tr>
+	    
+	  </tbody>
+	
+	{% endfor %}
+</table>
+
 {% endblock %}
