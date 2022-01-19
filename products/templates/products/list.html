@@ -8,7 +8,7 @@
 		<div class="flex-box-card-container">
 		
 			
-			{% for product in teacherclasses %}
+			{% for product in products %}
 				<a href="{% url 'products:detail' product.slug %}">
 					<h1>{{product.name}}</h1>
 					<p>{{product.description}} | {{product.date_inserted}}</p>

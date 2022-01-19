@@ -18,7 +18,7 @@ class ProductsModel(models.Model):
 			# Get current timestamp
 			epoch = datetime.utcfromtimestamp(0)
 			the_time = (datetime.utcnow() - epoch).total_seconds()
-			slug = f'{slugify(self.name)}-{slugify(self.language)}-{slugify(the_time)}'
+			slug = f'{slugify(self.name)}-{slugify(the_time)}'
 			self.slug = slug
 
 		super().save(*args, **kwargs)
