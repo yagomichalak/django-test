@@ -1,2 +1,5 @@
 Django==3.2.11
 python-dotenv==0.19.2
+djangorestframework==3.13.1
+markdown==3.3.6
+django-filter==21.1
