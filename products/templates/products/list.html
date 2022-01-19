@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Products | Test Website {% endblock %}
+{% block content %}
+
+	<div class="card-container">
+		<div class="flex-box-card-container">
+		
+			
+			{% for product in teacherclasses %}
+				<a href="{% url 'products:detail' product.slug %}">
+					<h1>{{product.name}}</h1>
+					<p>{{product.description}} | {{product.date_inserted}}</p>
+				</a>
+			{% endfor %}	
+		</div>
+		
+	</div>
+	
+
+{% endblock %}

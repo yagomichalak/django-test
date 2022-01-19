@@ -6,5 +6,4 @@ app_name = 'homepage'
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name="overview")
-
 ]

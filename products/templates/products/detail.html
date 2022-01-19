@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ product.name }} | Test Website {% endblock %}
+
+{% block content %}
+
+<div class="text-content" style="text-align: center;">
+	<h1 style="word-wrap: break-word;">{{ product.name }}</h1>
+    <p>
+    {{ product.description }}</p>
+	<ul class="list-group">
+		<li class="list-group-item">Inserted At • {{ product.date_inserted }}</li>
+	</ul>
+</div>
+
+{% endblock %}
