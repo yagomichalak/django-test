@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block extrahead %}
 {% block title %}Home | Test{% endblock %}
 
 
@@ -13,72 +13,41 @@
 
 
 
-<table class="table" id="product-table">
+<table class="table table-bordered" id="product-table">
 	<thead>
-		<tr>
+		<tr id="consult_date">
 			<th scope="col">Produto</th>
 			<th scope="col">Data de Inserção na Loja</th>
 			<th scope="col">Total de Vendas</th>
+			<!--
 			<th scope="col">14 de Fevereiro de 2021</th>
 			<th scope="col">13 de Fevereiro de 2021</th>
 			<th scope="col">12 de Fevereiro de 2021</th>
 			<th scope="col">11 de Fevereiro de 2021</th>
 			<th scope="col">10 de Fevereiro de 2021</th>
 			<th scope="col">9 de Fevereiro de 2021</th>
+			-->
 		</tr>
 	</thead>
+
+	<!--
 	{% for product in all_products %}
-		{{ product }}
-	  <tbody>
+	  <tbody id="products_spec">
 	  	
   		<tr>
 	  		<th scope="row"><a href="{{endpoint}}{% url 'products:detail' product.slug %}">{{product.name}}</a></th>
 			<td>{{ product.date_inserted }}&nbsp;&nbsp;</td>
+			<td>{{ product.total_sells }}</td>
 		</tr>
 	    
 	  </tbody>
 	
 	{% endfor %}
+	-->
+
 </table>
 
 
-
-
-
-
-<!--
-<table class="table" id="product-table">
-	<thead>
-		<tr>
-			<th scope="col">Produto</th>
-			<th scope="col">Data de Inserção na Loja</th>
-			<th scope="col">Total de Vendas</th>
-			<th scope="col">14 de Fevereiro de 2021</th>
-			<th scope="col">13 de Fevereiro de 2021</th>
-			<th scope="col">12 de Fevereiro de 2021</th>
-			<th scope="col">11 de Fevereiro de 2021</th>
-			<th scope="col">10 de Fevereiro de 2021</th>
-			<th scope="col">9 de Fevereiro de 2021</th>
-		</tr>
-	</thead>
-	{% for product in products %}
-	  <tbody>
-	  	
-  		<tr>
-	  		<th scope="row">{{ forloop.counter0 }}</th>
-	  		{% for spec in product %}
-		  		
-			    <td>{{ spec }}&nbsp;&nbsp;</td>
-			{% endfor %}
-		</tr>
-	    
-	  </tbody>
-	
-	{% endfor %}
-</table>
--->
-
-<!--
 <script type="text/javascript">
 
 	$.ajax({
@@ -86,33 +55,38 @@
 	    datatype: 'json',
 	    type: 'GET',
 	    success: function(data) {
-	        $.each(data, function(index, element) {
-	            $('body').append($('<div>', {
-	                text: element.name
-	            }));
+	        $.each(data, function(index, product) {
+	        	console.log(product);
+	        	{{endpoint}}
+	            $('#product-table').append(`
+	            	<tbody id="products_spec">
+					  	
+				  		<tr id="${product.slug}">
+					  		<th scope="row"><a href="/products/product/${product.slug}">${product.name}</a></th>
+							<td>${product.date_inserted}&nbsp;&nbsp;</td>
+							<td>${product.total_sells}</td>
+						</tr>
+					    
+					</tbody>`
+	            );
+
+	            // Need to make a 'customer purchases' app
+	            //  and then implement the correlation between
+	            // the Product & CustomerPurchase
+	            $('#consult_date').append(`
+					<th scope="col">14 de Fevereiro de 2021</th>
+
+				`);
+				$('#' + product.slug).append(`
+					<td>${Math.floor(Math.random() * 10)}</td>`);
+
 	        });
 	    }
 	});
 
-
-	$.ajax({
-	    url: 'api/products/?format=json',
-	    datatype: 'json',
-	    type: 'GET',
-	    success: function(data) {
-	        $.each(data, function(index, element) {
-				$('#product-table')
-					.append(
-						$('<div>', {text: element.name})
-
-					);
-
-	        });
-	    }
-	});
 
 </script>
 
--->
 
+{% endblock %}
 {% endblock %}

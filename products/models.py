@@ -17,6 +17,7 @@ class ProductsModel(models.Model):
 	description = models.CharField(max_length=200)
 	slug = models.SlugField(unique=True, blank=True, null=True)
 	date_inserted = models.DateTimeField(auto_now_add=True)
+	total_sells = models.IntegerField(default=0)
 
 
 	objects = models.Manager()
