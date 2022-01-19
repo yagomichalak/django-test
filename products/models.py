@@ -4,6 +4,12 @@ from django.utils.text import slugify
 
 # Create your models here.
 
+class ProductManager(models.Manager):
+	""" Manager for the Products. """
+
+	def get_queryset(self):
+		return super(ProductManager, self).get_queryset().all()
+
 class ProductsModel(models.Model):
 	""" Model for the Products. """
 
@@ -12,6 +18,9 @@ class ProductsModel(models.Model):
 	slug = models.SlugField(unique=True, blank=True, null=True)
 	date_inserted = models.DateTimeField(auto_now_add=True)
 
+
+	objects = models.Manager()
+	ab_ob = ProductManager()
 
 	def save(self, *args, **kwargs):
 		if not self.slug:

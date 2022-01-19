@@ -5,12 +5,49 @@
 
 {% block content %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <div style="text-align: center;">
 	Hello, this is the home page!
 </div>
 
 
-<table class="table">
+
+<table class="table" id="product-table">
+	<thead>
+		<tr>
+			<th scope="col">Produto</th>
+			<th scope="col">Data de Inserção na Loja</th>
+			<th scope="col">Total de Vendas</th>
+			<th scope="col">14 de Fevereiro de 2021</th>
+			<th scope="col">13 de Fevereiro de 2021</th>
+			<th scope="col">12 de Fevereiro de 2021</th>
+			<th scope="col">11 de Fevereiro de 2021</th>
+			<th scope="col">10 de Fevereiro de 2021</th>
+			<th scope="col">9 de Fevereiro de 2021</th>
+		</tr>
+	</thead>
+	{% for product in all_products %}
+		{{ product }}
+	  <tbody>
+	  	
+  		<tr>
+	  		<th scope="row"><a href="{{endpoint}}{% url 'products:detail' product.slug %}">{{product.name}}</a></th>
+			<td>{{ product.date_inserted }}&nbsp;&nbsp;</td>
+		</tr>
+	    
+	  </tbody>
+	
+	{% endfor %}
+</table>
+
+
+
+
+
+
+<!--
+<table class="table" id="product-table">
 	<thead>
 		<tr>
 			<th scope="col">Produto</th>
@@ -39,5 +76,43 @@
 	
 	{% endfor %}
 </table>
+-->
+
+<!--
+<script type="text/javascript">
+
+	$.ajax({
+	    url: 'api/products/?format=json',
+	    datatype: 'json',
+	    type: 'GET',
+	    success: function(data) {
+	        $.each(data, function(index, element) {
+	            $('body').append($('<div>', {
+	                text: element.name
+	            }));
+	        });
+	    }
+	});
+
+
+	$.ajax({
+	    url: 'api/products/?format=json',
+	    datatype: 'json',
+	    type: 'GET',
+	    success: function(data) {
+	        $.each(data, function(index, element) {
+				$('#product-table')
+					.append(
+						$('<div>', {text: element.name})
+
+					);
+
+	        });
+	    }
+	});
+
+</script>
+
+-->
 
 {% endblock %}
