@@ -1,4 +1,4 @@
-# sloth-website
+# Desafio Django
 This is a repo for the new website we're building for The Language Sloth server on Discord.
 
 # How to Run it
